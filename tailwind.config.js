@@ -14,7 +14,8 @@ module.exports = {
             "white" : "#FFFFFF",
             "border" : "#C6C6C6",
             "borderLight" : "#ECEEEF",
-            "yellow" : "#FFC207"
+            "yellow" : "#FFC207",
+            "bg" : "#0E172A"
         },
         screens: {
             "full": {"max": "1580px"},
