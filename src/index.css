@@ -4,3 +4,16 @@
 
 * {font-family:"Inter",sans-serif;}
 body{margin:0;padding:0;background:#0E172A;}
+
+#custom-loader {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #00000026;
+}

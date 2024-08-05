@@ -1,19 +1,30 @@
 import React,{useState,useEffect} from "react";
+import axios from "axios";
 import {API_KEY, API_URL} from "./Constant";
 import MovieCard from "./components/MovieCard";
 
 const App = () => {
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const searchMovies = async (title) => {
-        const responce = await fetch(`${API_URL}?apikey=${API_KEY}&s=${title}`);
-        const data = await responce.json();
-        setMovies(data.Search);
-        console.log(movies)
-    }
     useEffect(() => {
         searchMovies("avengers"); // pass 1st time static value
-    }, []);
+    },[]);
+    const searchMovies = async(title) => {
+        try{
+            document.getElementById("custom-loader").style.display = "flex";
+            const {data} = await axios.get(`${API_URL}?apikey=${API_KEY}&s=${title}`);
+            if(data.Search){
+                setMovies(data.Search);
+            }
+            document.getElementById("custom-loader").style.display = "none";
+        }catch(e){
+            document.getElementById("custom-loader").style.display = "none";
+            console.error("Error Getting Movies :", e);
+        }
+        finally{
+            document.getElementById("custom-loader").style.display = "none";
+        }
+    }
     return (
         <div className="w-full py-10 px-5 absolute">
             <div className="w-[1440px] max-w-full mx-auto">
